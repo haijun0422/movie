@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-# from flask import Flask, render_template
-# from flask_sqlalchemy import SQLAlchemy
-# import pymysql
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+import pymysql
 
-# app = Flask(__name__)
-# """SQLALCHEMY配置"""
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@127.0.0.1:3306/movie'  # 连接数据库
-# app.config['SQLALCHEMY_TRACKK_MODIFICATIONS'] = True
-# app.config['SQLALCHEMY_COMMIT_TEARDOWN'] = True
-# app.config['SECRET_KEY'] = '763121a72e0745bc88ffc844a4d6808b'
-# app.debug = False
-# db = SQLAlchemy(app)
+app = Flask(__name__)
+"""SQLALCHEMY配置"""
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@127.0.0.1:3306/movie'  # 连接数据库
+app.config['SQLALCHEMY_TRACKK_MODIFICATIONS'] = True
+app.config['SQLALCHEMY_COMMIT_TEARDOWN'] = True
+app.config['SECRET_KEY'] = '763121a72e0745bc88ffc844a4d6808b'
+app.debug = False
+db = SQLAlchemy(app)
 
 
 
 from datetime import datetime
-from app import db
+# from app import db
 
 
 class User(db.Model):
@@ -189,16 +189,21 @@ class Oplog(db.Model):
         return '<oplog %r>' % self.id
 
 
-# if __name__ == '__main__':
-#     # db.create_all()
-    
-#     from werkzeug.security import generate_password_hash    
-#     admin=Admin(
-#         name='admin',
+if __name__ == '__main__':
+    # db.create_all()
+    # role=Roles(
+    #     name='管理员',
+    #     auths=0
+    # )
+    # db.session.add(role)
+    # db.session.commit()
+    from werkzeug.security import generate_password_hash    
+    admin=Admin(
+        name='admin',
         
-#         pwd=generate_password_hash('admin'),
-#         is_super = 0,
-#         role_id=1
-#     )
-#     db.session.add(admin)
-#     db.session.commit()
+        pwd=generate_password_hash('admin'),
+        is_super = 0,
+        role_id=1
+    )
+    db.session.add(admin)
+    db.session.commit()
