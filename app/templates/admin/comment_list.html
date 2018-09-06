@@ -41,7 +41,7 @@
                         {% for v in page_data.items %}
                         <div class="box-comment">
                             <img class="img-circle img-sm"
-                                 src="{{ url_for('static',filename='uploads/users/%s' % v.user.face) }}" alt="User Image">
+                                 src="{{ url_for('static',filename='upload/users/%s' % v.user.face) }}" alt="User Image">
                             <div class="comment-text">
                                     <span class="username">
                                         {{ v.user.name }}
