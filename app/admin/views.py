@@ -218,7 +218,7 @@ def movie_edit(id=None):
         db.session.commit()
         flash('修改电影成功','ok')
         return redirect(url_for('admin.movie_edit',id=id))
-    return render_template('admin/movie_edit.html', form=form, movie=movie)# https://www.cnblogs.com/renpingsheng/p/9142100.html
+    return render_template('admin/movie_edit.html', form=form, movie=movie)
 
 
 @admin.route('/preview/add/')
