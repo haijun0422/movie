@@ -3,11 +3,12 @@ __author__ = 'Administrator'
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField, SelectField
-from wtforms.validators import DataRequired, ValidationError
-from app.models import Admin, Tag
+from wtforms.validators import DataRequired, ValidationError,EqualTo
+from app.models import Admin, Tag, Auth, Roles
 
 tags = Tag.query.all()  # 查询所有标签，用于添加电影标签选择
-
+auth_list = Auth.query.all()
+role_list= Roles.query.all()
 
 class LoginForm(FlaskForm):
     account = StringField(
