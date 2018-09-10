@@ -207,3 +207,125 @@ class PreviewForm(FlaskForm):
             "class": "btn btn-primary",
         }
     )
+
+
+# 权限表单
+class AuthForm(FlaskForm):
+    name = StringField(
+        label="权限名称",
+        validators=[
+            DataRequired("请输入权限名称！")
+        ],
+        description="权限名称",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "请输入权限名称！",
+        }
+    )
+    url = StringField(
+        label="权限",
+        validators=[
+            DataRequired("请输入权限地址！")
+        ],
+        description="权限地址",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "请输入权限地址！"
+        }
+    )
+    submit = SubmitField(
+        "添加",
+        render_kw={
+            "class": "btn btn-primary",
+        }
+    )
+
+
+# 角色表单
+class RoleForm(FlaskForm):
+    name = StringField(
+        label="角色名称",
+        validators=[
+            DataRequired("请输入角色名称！")
+        ],
+        description="角色名称",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "请输入角色名称！"
+        }
+    )
+    auths = SelectField(
+        label="权限列表",
+        validators=[
+            DataRequired("请选择权限列表！")
+        ],
+        coerce=int,
+        choices=[(v.id, v.name) for v in auth_list],
+        description="权限列表",
+        render_kw={
+            "class": "form-control"
+        }
+    )
+
+    submit = SubmitField(
+        "编辑",
+        render_kw={
+            "class": "btn btn-primary",
+        }
+    )
+
+# 管理员列表
+class AdminForm(FlaskForm):
+    name = StringField(
+        label="用户名",
+        validators=[
+            DataRequired("请输入管理员用户名！")
+        ],
+        description="用户名",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "请输入管理员用户名！"
+        },
+    )
+
+    pwd = PasswordField(
+        label="管理员密码",
+        validators=[
+            DataRequired("请输入管理员密码！")
+        ],
+        description="管理员密码",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "请输入管理员密码！"
+        },
+    )
+    repwd = PasswordField(
+        label="管理员重复输入密码",
+        validators=[
+            DataRequired("请管理员重复输入密码！"),
+            EqualTo("pwd", message="两次输入密码不一致！")
+        ],
+        description="管理员重复输入密码",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "请管理员重复输入密码！"
+        },
+    )
+    role_id = SelectField(
+        label="所属角色",
+        validators=[
+            DataRequired("请选择所属角色！")
+        ],
+        coerce=int,
+        choices=[(v.id, v.name) for v in role_list],
+        render_kw={
+            "class": "form-control"
+        }
+    )
+
+    submit = SubmitField(
+        "编辑",
+        render_kw={
+            "class": "btn btn-primary",
+        }
+    )

@@ -29,7 +29,7 @@
                             {% endfor %}
                             <div class="form-group">
                                 <label for="input_name">{{ form.name.label }}</label>
-                                {{ form.name }}
+                                {{ form.name(value=auth.name) }}
                                 <!--报错信息-->
                                 {% for err in form.name.errors %}
                                     <div class="col-md-12">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="input_url">{{ form.url.label }}</label>
-                                {{ form.url }}
+                                {{ form.url(value=auth.url) }}
                                 <!--报错信息-->
                                 {% for err in form.url.errors %}
                                     <div class="col-md-12">
